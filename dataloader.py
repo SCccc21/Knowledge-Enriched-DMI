@@ -13,8 +13,8 @@ from torch.nn.modules.loss import _Loss
 from matplotlib import pyplot
 from torch.utils.data.sampler import SubsetRandomSampler
 
-# mnist_path = "/home/sichen/data/mnist"
-# mnist_img_path = "/home/sichen/data/MNIST_imgs"
+# mnist_path = "./data/mnist"
+# mnist_img_path = "./data/MNIST_imgs"
 # cifar_path = "./data/CIFAR"
 # cifar_img_path = "./data/CIFAR_imgs"
 # os.makedirs(mnist_path, exist_ok=True)
@@ -227,10 +227,10 @@ class celeba(data.Dataset):
 		return image_tensor, image_label
 
 def load_attri(file_path):
-	data_path = sorted(glob.glob('/home/sichen/data/img_align_celeba_png/*.png'))
+	data_path = sorted(glob.glob('./data/img_align_celeba_png/*.png'))
 	print(len(data_path))
 	# get label
-	att_path = '/home/sichen/data/list_attr_celeba.txt'
+	att_path = './data/list_attr_celeba.txt'
 	att_list = open(att_path).readlines()[2:] # start from 2nd row
 	data_label = []
 	for i in range(len(att_list)):

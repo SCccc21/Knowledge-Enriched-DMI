@@ -58,12 +58,12 @@ if __name__ == "__main__":
     G = torch.nn.DataParallel(G).cuda()
     if args.improved_flag == True:
         D = MinibatchDiscriminator()
-        path_G = '/home/chensi/mi/GMI-code/Celeba/improvedGAN/improved_mb_celeba_G_entropy2.tar'
-        path_D = '/home/chensi/mi/GMI-code/Celeba/improvedGAN/improved_mb_celeba_D_entropy2.tar'
+        path_G = './improvedGAN/improved_mb_celeba_G_entropy2.tar'
+        path_D = './improvedGAN/improved_mb_celeba_D_entropy2.tar'
     else:
         D = DGWGAN(3)
-        path_G = '/home/chensi/mi/GMI-code/Celeba/improvedGAN/celeba_G.tar'
-        path_D = '/home/chensi/mi/GMI-code/Celeba/improvedGAN/celeba_D.tar'
+        path_G = './improvedGAN/celeba_G.tar'
+        path_D = './improvedGAN/celeba_D.tar'
     
     D = torch.nn.DataParallel(D).cuda()
     ckp_G = torch.load(path_G)
@@ -73,8 +73,7 @@ if __name__ == "__main__":
 
     if args.model.startswith("VGG16"):
         T = VGG16(1000)
-        # path_T = './target_model/target_ckp/VGG16_88.26.tar'
-        path_T = '/home/chensi/mi/GMI-code/Celeba/target_model/target_ckp/VGG16_88.26.tar'
+        path_T = './target_model/target_ckp/VGG16_88.26.tar'
     elif args.model.startswith('IR152'):
         T = IR152(1000)
         path_T = './target_model/target_ckp/IR152_91.16.tar'
@@ -89,8 +88,7 @@ if __name__ == "__main__":
 
     E = FaceNet(1000)
     E = torch.nn.DataParallel(E).cuda()
-    # path_E = './target_model/target_ckp/FaceNet_95.88.tar'
-    path_E = '/home/chensi/mi/GMI-code/Celeba/target_model/target_ckp/FaceNet_95.88.tar'
+    path_E = './target_model/target_ckp/FaceNet_95.88.tar'
     ckp_E = torch.load(path_E)
     E.load_state_dict(ckp_E['state_dict'], strict=False)
 

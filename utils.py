@@ -301,7 +301,7 @@ def low2high(img):
 
 def calc_feat(img):
     I = FaceNet(1000)
-    BACKBONE_RESUME_ROOT = '/home/sichen/models/target_model/target_ckp/FaceNet_95.88.tar'
+    BACKBONE_RESUME_ROOT = './target_model/target_ckp/FaceNet_95.88.tar'
     print("Loading Backbone Checkpoint ")
     I.load_state_dict(torch.load(BACKBONE_RESUME_ROOT))
     I = torch.nn.DataParallel(I).cuda()

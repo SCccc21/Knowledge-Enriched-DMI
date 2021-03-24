@@ -1,9 +1,9 @@
 {
     "dataset":{
       "name":"celeba",
-      "train_file_path":"/home/chensi/data/trainset.txt",
-      "test_file_path":"/home/chensi/data/testset.txt",
-      "img_path": "/home/chensi/data/img_align_celeba_png",
+      "train_file_path":"./data/trainset.txt",
+      "test_file_path":"./data/testset.txt",
+      "img_path": "./data/img_align_celeba_png",
       "model_name":"VGG16",
       "mode":"reg",
       "n_classes":1000,

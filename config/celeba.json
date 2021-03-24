@@ -1,9 +1,9 @@
 {
     "dataset":{
-        "gan_file_path": "/home/chensi/data/ganset.txt",
+        "gan_file_path": "./data/ganset.txt",
         "model_name": "train_gan - first stage",
         "name": "celeba",
-        "img_path": "/home/chensi/data/img_align_celeba_png",
+        "img_path": "./data/img_align_celeba_png",
         "n_classes":1000
     },
 
