@@ -22,11 +22,13 @@ This code has been tested with Python 3.6, PyTorch 1.0 and cuda 10.0.
 * Run
     `python k+1_gan.py`
 * Model checkpoints and generated image results are saved in folder ’improvedGAN‘.
+* An general GAN can be obtained as a baseline by running
+    `python binary_gan.py`
 
 
 ## Distributional Recovery
 Run
-    `python train_stage2.py`
+    `python recovery.py`
     
 * `--model` choose the target model to attack
 * `--improved_flag` indicates if a inversion-specfic GAN is used. If False, then a normal GAN will be applied.
