@@ -60,7 +60,6 @@ utils.Tee(os.path.join(log_path, log_file), 'w')
 
 
 if __name__ == "__main__":
-    # os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1, 2, 3'
     os.environ["CUDA_VISIBLE_DEVICES"] = '4, 5, 6, 7'
     global args, writer
     

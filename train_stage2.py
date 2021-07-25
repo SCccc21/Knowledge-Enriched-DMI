@@ -58,8 +58,8 @@ if __name__ == "__main__":
     G = torch.nn.DataParallel(G).cuda()
     if args.improved_flag == True:
         D = MinibatchDiscriminator()
-        path_G = './improvedGAN/improved_mb_celeba_G_entropy2.tar'
-        path_D = './improvedGAN/improved_mb_celeba_D_entropy2.tar'
+        path_G = './improvedGAN/improved_celeba_G.tar'
+        path_D = './improvedGAN/improved_celeba_D.tar'
     else:
         D = DGWGAN(3)
         path_G = './improvedGAN/celeba_G.tar'
@@ -100,6 +100,7 @@ if __name__ == "__main__":
     for i in range(1):
         iden = torch.from_numpy(np.arange(60))
 
+        # evaluate on the first 300 identities only
         for idx in range(5):
             print("--------------------- Attack batch [%s]------------------------------" % idx)
             if args.dist_flag == True:
