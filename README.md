@@ -4,7 +4,7 @@ This is a PyTorch implementation of our paper at ICCV2021:
 
 **Knowledge Enriched Distributional Model Inversion Attacks** \[[paper](https://openaccess.thecvf.com/content/ICCV2021/papers/Chen_Knowledge-Enriched_Distributional_Model_Inversion_Attacks_ICCV_2021_paper.pdf)\]  \[[arxiv](https://arxiv.org/abs/2010.04092)\]
 
-We propose a novel **'Inversion-Specific GAN'** that can better distill knowledge useful for performing attacks on private models from public data. Moreover,  we propose to **model a private data distribution** for each target class which refers to 'Distributional Recovery'.
+We propose a novel **'Inversion-Specific GAN'** that can better distill knowledge useful for performing attacks on private models from public data. Moreover,  we propose to <u> model a private data distribution </u> for each target class which refers to **'Distributional Recovery'**.
 
 ## Requirement
 This code has been tested with Python 3.6, PyTorch 1.0 and cuda 10.0. 
@@ -14,7 +14,7 @@ This code has been tested with Python 3.6, PyTorch 1.0 and cuda 10.0.
 * Download relevant datasets including Celeba, MNIST, CIFAR10.
 * Get target model prepared or run our code
     `python train_classifier.py` <br>
-    Note that this code only provided three model architectures: VGG16, IR152, Facenet. And pretrained checkpoints for the three models can be downloaded at https://drive.google.com/drive/folders/1U4gekn72UX_n1pHdm9GQUQwwYVDvpTfN?usp=sharing
+    Note that this code only provided three model architectures: VGG16, IR152, Facenet. And pretrained checkpoints for the three models can be downloaded at https://drive.google.com/drive/folders/1U4gekn72UX_n1pHdm9GQUQwwYVDvpTfN?usp=sharing.
 
 ## Build a inversion-specific GAN
 * Modify the configuration in 'celeba.json'.
