@@ -14,7 +14,7 @@ This code has been tested with Python 3.6, PyTorch 1.0 and cuda 10.0.
 * Download relevant datasets including Celeba, MNIST, CIFAR10.
 * Get target model prepared or run our code
     `python train_classifier.py` <br>
-    Note that this code only provided three model architectures: VGG16, IR152, Facenet.
+    Note that this code only provided three model architectures: VGG16, IR152, Facenet. And pretrained checkpoints for the three models can be downloaded at https://drive.google.com/drive/folders/1U4gekn72UX_n1pHdm9GQUQwwYVDvpTfN?usp=sharing
 
 ## Build a inversion-specific GAN
 * Modify the configuration in 'celeba.json'.
