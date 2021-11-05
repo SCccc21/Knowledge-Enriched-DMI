@@ -24,6 +24,7 @@ This code has been tested with Python 3.6, PyTorch 1.0 and cuda 10.0.
 * Model checkpoints and generated image results are saved in folder ’improvedGAN‘.
 * A general GAN can be obtained as a baseline by running
     `python binary_gan.py`.
+* Pretrained binary GAN and inversion-specific GAN can be downloaded at https://drive.google.com/file/d/1Yr5oQSGbUmSVu9YhWV8BssSqlbey9gRE/view?usp=sharing.
 
 
 ## Distributional Recovery
