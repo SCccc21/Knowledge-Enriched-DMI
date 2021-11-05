@@ -43,13 +43,8 @@ class VGG16(nn.Module):
             
     def forward(self, x):
         feature = self.feature(x)
-        # print(x.shape)
-        # print(feature.shape)
         feature = feature.view(feature.size(0), -1)
-        # print(feature.shape)
         feature = self.bn(feature)
-        # print(feature.shape)
-        # print("---------------")
         res = self.fc_layer(feature)
         
         return [feature, res]
