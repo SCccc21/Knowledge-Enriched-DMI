@@ -148,7 +148,7 @@ class GrayFolder(data.Dataset):
 	def load_img(self):
 		img_list = []
 		for i, img_name in enumerate(self.name_list):
-			if img_name.endswith(".png"):
+			if img_name.endswith(".jpg"):
 				path = self.img_path + "/" + img_name
 				img = PIL.Image.open(path)
 				img = img.convert('L')
