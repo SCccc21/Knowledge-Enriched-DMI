@@ -3,7 +3,7 @@ import numpy as np
 import torch.nn as nn
 from copy import deepcopy
 from torch.optim.lr_scheduler import MultiStepLR
-root_path = "./target_models"
+root_path = "./target_model"
 model_path = os.path.join(root_path, "target_ckp")
 
 device = "cuda"
