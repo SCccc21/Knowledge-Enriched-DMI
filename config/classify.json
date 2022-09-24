@@ -3,7 +3,7 @@
       "name":"celeba",
       "train_file_path":"./data/trainset.txt",
       "test_file_path":"./data/testset.txt",
-      "img_path": "./data/img_align_celeba_png",
+      "img_path": "./data/img_align_celeba_png/img_align_celeba/img_align_celeba",
       "model_name":"VGG16",
       "mode":"reg",
       "n_classes":1000,
