@@ -40,8 +40,10 @@ def train_reg(args, model, criterion, optimizer, trainloader, testloader, n_epoc
             img, iden = img.to(device), iden.to(device)
             bs = img.size(0)
             iden = iden.view(-1)
-
-            feats, out_prob = model(img)
+            if model_name == "resnet18":
+	      out_prob = model(img)
+	    else:
+              feats, out_prob = model(img)
             cross_loss = criterion(out_prob, iden)
             loss = cross_loss
 
