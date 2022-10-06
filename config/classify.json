@@ -9,6 +9,16 @@
       "n_classes":1000,
       "gpus":"0,1,2,3,4,5,6,7"
     },
+    "resnet18":{
+      "epochs":30,
+      "batch_size":64,
+      "instance":4,
+      "lr":1e-2,
+      "momentum":0.9,
+      "weight_decay":1e-4,
+      "gamma":0.2,
+      "adjust_epochs":[20, 35]
+    },
     "VGG16":{
       "epochs":50,
       "batch_size":64,
