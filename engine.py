@@ -3,7 +3,7 @@ import numpy as np
 import torch.nn as nn
 from copy import deepcopy
 from torch.optim.lr_scheduler import MultiStepLR
-root_path = "./target_models"
+root_path = "./target_model"
 model_path = os.path.join(root_path, "target_ckp")
 
 device = "cuda"
@@ -18,7 +18,7 @@ def test(model, criterion, dataloader):
         bs = img.size(0)
         iden = iden.view(-1)
 
-        out_prob = model(img)[-1]
+        out_prob = model(img)
         out_iden = torch.argmax(out_prob, dim=1).view(-1)
         ACC += torch.sum(iden == out_iden).item()
         cnt += bs
@@ -38,10 +38,20 @@ def train_reg(args, model, criterion, optimizer, trainloader, testloader, n_epoc
 		
         for i, (img, iden) in enumerate(trainloader):
             img, iden = img.to(device), iden.to(device)
+            #img=images loading in batch_size
+            #img.size()= batch_size,3,64,64
+            #iden=index of image
+            #size of iden=batch_size,1
             bs = img.size(0)
+            #print(iden)
             iden = iden.view(-1)
-
-            feats, out_prob = model(img)
+            #print(iden)
+            if model_name == "resnet18":
+              out_prob = model(img)
+            else:
+              feats, out_prob = model(img)
+            #print(out_prob.size())
+            #out_prob.size()=batch_size,1000
             cross_loss = criterion(out_prob, iden)
             loss = cross_loss
 
@@ -50,6 +60,9 @@ def train_reg(args, model, criterion, optimizer, trainloader, testloader, n_epoc
             optimizer.step()
 
             out_iden = torch.argmax(out_prob, dim=1).view(-1)
+            #out_iden=out_iden.view(bs)
+            #print(out_iden)
+            #print(out_iden.size())
             ACC += torch.sum(iden == out_iden).item()
             loss_tot += loss.item() * bs
             cnt += bs

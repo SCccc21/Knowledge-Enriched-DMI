@@ -2,6 +2,8 @@ import torch, os, engine, classify, utils, sys
 import numpy as np 
 import torch.nn as nn
 from sklearn.model_selection import train_test_split
+import torchvision.models as models
+resnet18 = models.resnet18()
 
 dataset_name = "celeba"
 device = "cuda"
@@ -14,7 +16,9 @@ os.makedirs(log_path, exist_ok=True)
 def main(args, model_name, trainloader, testloader):
     n_classes = args["dataset"]["n_classes"]
     mode = args["dataset"]["mode"]
-    if model_name == "VGG16":
+    if model_name == "resnet18":
+            net == resnet18
+    elif model_name == "VGG16":
         if mode == "reg": 
             net = classify.VGG16(n_classes)
         elif mode == "vib":
