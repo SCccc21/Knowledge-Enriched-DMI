@@ -48,7 +48,7 @@ def main(args, model_name, trainloader, testloader):
             net = classify.IR50_vib(n_classes)
         BACKBONE_RESUME_ROOT = "ir50.pth"
         print("Loading Backbone Checkpoint ")
-        load_my_state_dict(net.feature, torch.load(BACKBONE_RESUME_ROOT))
+        utils.load_my_state_dict(net.feature, torch.load(BACKBONE_RESUME_ROOT))
         
     elif model_name == "IR152":
         if mode == "reg":
