@@ -111,6 +111,9 @@ if __name__ == "__main__":
     step = 0
 
     for epoch in range(epochs):
+
+        print(f"epoch: {epoch+1}/{epochs}")
+        
         start = time.time()
         _, unlabel_loader1 = init_dataloader(args, file_path, batch_size, mode="gan", iterator=True)
         _, unlabel_loader2 = init_dataloader(args, file_path, batch_size, mode="gan", iterator=True)
