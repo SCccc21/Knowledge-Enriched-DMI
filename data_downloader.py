@@ -23,9 +23,9 @@ Note:
     https://www.kaggle.com/datasets/jessicali9530/celeba-dataset
 """
 
-print("Starting download of CelebA dataset...")
-dataset = CelebA(root='./data', split='train', transform=transform, download=True)
-print("Completed download of CelebA dataset.\n")
+# print("Starting download of CelebA dataset...")
+# dataset = CelebA(root='./data', split='train', transform=transform, download=True)
+# print("Completed download of CelebA dataset.\n")
 
 # Download the MNIST dataset
 print("Starting download of MNIST dataset...")
