@@ -63,7 +63,7 @@ def train_reg(args, model, criterion, optimizer, trainloader, testloader, n_epoc
             best_model = deepcopy(model)
 
         if (epoch+1) % 5 == 0:
-	    os.makedirs(model_path, exist_ok=True)
+            os.makedirs(model_path, exist_ok=True)
             torch.save({'state_dict':model.state_dict()}, os.path.join(model_path, "allclass_epoch{}.tar").format(epoch))
 
         print("Epoch:{}\tTime:{:.2f}\tTrain Loss:{:.2f}\tTrain Acc:{:.2f}\tTest Acc:{:.2f}".format(epoch, interval, train_loss, train_acc, test_acc))
