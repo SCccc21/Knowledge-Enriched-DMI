@@ -79,7 +79,8 @@ if __name__ == "__main__":
 
     if model_name_T.startswith("VGG16"):
         T = VGG16(1000)
-        path_T = './target_model/target_ckp/VGG16_88.26.tar'
+        #path_T = './target_model/target_ckp/VGG16_88.26.tar'
+        path_T = './target_models/target_ckp/allclass_epoch49.tar'
     elif model_name_T.startswith('IR152'):
         T = IR152(1000)
         path_T = './target_model/target_ckp/IR152_91.16.tar'
