@@ -32,7 +32,6 @@ def train_reg(args, model, criterion, optimizer, trainloader, testloader, n_epoc
     #scheduler = MultiStepLR(optimizer, milestones=adjust_epochs, gamma=gamma)
         
     for epoch in range(n_epochs):
-	print(f"epoch: {epoch+1}/{n_epochs}")
         tf = time.time()
         ACC, cnt, loss_tot = 0, 0, 0.0
         model.train()
