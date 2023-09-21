@@ -14,6 +14,21 @@ We propose a novel **'Inversion-Specific GAN'** that can better distill knowledg
 - TensorBoardX
 -  OpenCV
 
+## Download Data
+To download the CelebA dataset needed for this project, you can run the provided Python script as follows:
+```sh
+python data_downloader.py
+
+> ### NOTE
+> There are occasions when downloading the CelebA dataset using `torchvision`
+> results in a Google Drive error. This is due to the dataset being hosted on
+> Google Drive, which sometimes restricts the number of download requests.
+>
+> In such cases, an alternative is to download the CelebA dataset directly 
+> from Kaggle using the following link:
+> [CelebA Dataset on Kaggle](https://www.kaggle.com/datasets/jessicali9530/celeba-dataset)
+
+
 
 ## Getting Started
 * Install required packages.
