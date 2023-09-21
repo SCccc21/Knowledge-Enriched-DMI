@@ -9,10 +9,11 @@ We propose a novel **'Inversion-Specific GAN'** that can better distill knowledg
 ## Requirements
 
 - Python 3.6
-- OpenCV
 - PyTorch
 - CUDA
 - TensorBoardX
+-  OpenCV
+
 
 ## Getting Started
 * Install required packages.
