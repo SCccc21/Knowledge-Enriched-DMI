@@ -26,13 +26,3 @@ Note:
 # print("Starting download of CelebA dataset...")
 # dataset = CelebA(root='./data', split='train', transform=transform, download=True)
 # print("Completed download of CelebA dataset.\n")
-
-# Download the MNIST dataset
-print("Starting download of MNIST dataset...")
-dataset = MNIST(root='./data', transform=transform, download=True)
-print("Completed download of MNIST dataset.\n")
-
-# Download the CIFAR10 dataset
-print("Starting download of CIFAR10 dataset...")
-dataset = CIFAR10(root='./data', transform=transform, download=True)
-print("Completed download of CIFAR10 dataset.\n")
