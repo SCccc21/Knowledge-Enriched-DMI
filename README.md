@@ -6,8 +6,13 @@ This is a PyTorch implementation of our paper at ICCV2021:
 
 We propose a novel **'Inversion-Specific GAN'** that can better distill knowledge useful for performing attacks on private models from public data. Moreover,  we propose to *model a private data distribution* for each target class which refers to **'Distributional Recovery'**.
 
-## Requirement
-This code has been tested with Python 3.6, PyTorch 1.0 and cuda 10.0. 
+## Requirements
+
+- Python 3.6
+- OpenCV
+- PyTorch
+- CUDA
+- TensorBoardX
 
 ## Getting Started
 * Install required packages.
