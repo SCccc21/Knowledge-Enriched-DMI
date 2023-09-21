@@ -18,6 +18,7 @@ We propose a novel **'Inversion-Specific GAN'** that can better distill knowledg
 To download the CelebA dataset needed for this project, you can run the provided Python script as follows:
 ```sh
 python data_downloader.py
+```
 
 > ### NOTE
 > There are occasions when downloading the CelebA dataset using `torchvision`
