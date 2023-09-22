@@ -4,7 +4,7 @@ import torch.nn as nn
 from sklearn.model_selection import train_test_split
 
 dataset_name = "celeba"
-device = "cuda"
+device = "cpu"
 root_path = "./target_model"
 log_path = os.path.join(root_path, "target_logs")
 model_path = os.path.join(root_path, "target_ckp")
