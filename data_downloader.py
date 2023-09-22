@@ -8,11 +8,6 @@ transform = transforms.Compose([
     transforms.ToTensor(),
 ])
 
-# Retry mechanism to download CelebA
-max_attempts = 5  # Maximum number of download attempts
-wait_time = 60 * 15  # 15 minutes wait time between attempts
-attempt = 0
-
 
 try:
     print("Starting download of CelebA dataset...")
