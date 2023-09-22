@@ -1,8 +1,6 @@
+import time
 import torchvision.transforms as transforms
 from torchvision.datasets import CelebA
-from torchvision.datasets import MNIST
-from torchvision.datasets import CIFAR10
-
 
 # Define transformations
 transform = transforms.Compose([
@@ -10,19 +8,23 @@ transform = transforms.Compose([
     transforms.ToTensor(),
 ])
 
-# Download and load the CelebA dataset
+# Retry mechanism to download CelebA
+max_attempts = 5  # Maximum number of download attempts
+wait_time = 60 * 15  # 15 minutes wait time between attempts
+attempt = 0
 
-"""
-Note:
-    There are occasions when downloading the CelebA dataset using `torchvision`
-    results in a Google Drive error. This is due to the dataset being hosted on
-    Google Drive, which sometimes restricts the number of download requests.
 
-    In such cases, an alternative is to download the CelebA dataset directly 
-    from Kaggle using the following link:
-    https://www.kaggle.com/datasets/jessicali9530/celeba-dataset
-"""
+try:
+    print("Starting download of CelebA dataset...")
+    dataset = CelebA(root='./data', split='train', transform=transform, download=True)
+    print("Completed download of CelebA dataset.\n")
 
-print("Starting download of CelebA dataset...")
-dataset = CelebA(root='./data', split='train', transform=transform, download=True)
-print("Completed download of CelebA dataset.\n")
+except Exception as e:
+    error_message = str(e)
+
+    if "daily quota" in error_message.lower() and "img_align_celeba.zip" in error_message:
+        print(f"Failed due to daily quota exceeded.")
+        
+    else:
+        # Re-raise the exception if it's not related to the daily quota issue.
+        raise
