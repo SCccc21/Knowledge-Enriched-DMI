@@ -9,14 +9,6 @@ from torchvision.models import inception_v3
 from scipy.linalg import sqrtm
 
 
-import torch
-import torch.nn.functional as F
-import numpy as np
-from generator import Generator
-import utils
-from torchvision.models import inception_v3
-from scipy.linalg import sqrtm
-
 
 def prepare_for_inception_v3(imgs_batch):
     """
