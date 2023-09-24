@@ -129,6 +129,10 @@ python calculate_FID.py
 
 To calculate FID on the improved generator, use the `--improved_flag`. Omitting it will result in calculating FID for the GMI baseline model.
 
+---
+>**Important Note:** If you wish to execute these lines and reproduce my experiments, simply run the code provided for this assignment in the `Knowledge Enriched DMI.ipynb` file. Be sure to consult my documentation if you encounter any issues.
+>
+>Happy experimenting :)
 
 ## Reference
 <a id="1">[1]</a> 
