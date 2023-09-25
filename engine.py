@@ -62,7 +62,8 @@ def train_reg(args, model, criterion, optimizer, trainloader, testloader, n_epoc
             best_ACC = test_acc
             best_model = deepcopy(model)
 
-        if (epoch+1) % 10 == 0:
+        if (epoch+1) % 5 == 0:
+            os.makedirs(model_path, exist_ok=True)
             torch.save({'state_dict':model.state_dict()}, os.path.join(model_path, "allclass_epoch{}.tar").format(epoch))
 
         print("Epoch:{}\tTime:{:.2f}\tTrain Loss:{:.2f}\tTrain Acc:{:.2f}\tTest Acc:{:.2f}".format(epoch, interval, train_loss, train_acc, test_acc))
@@ -76,6 +77,7 @@ def train_vib(args, model, criterion, optimizer, trainloader, testloader, n_epoc
 	model_name = args['dataset']['model_name']
 	
 	for epoch in range(n_epochs):
+		print(f"epoch: {epoch+1}/{n_epochs}")
 		tf = time.time()
 		ACC, cnt, loss_tot = 0, 0, 0.0
 		

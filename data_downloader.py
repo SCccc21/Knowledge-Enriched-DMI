@@ -2,9 +2,16 @@ import torch, os, engine, classify, utils, sys
 import numpy as np 
 import torch.nn as nn
 from sklearn.model_selection import train_test_split
+import argparse
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='Training Classifier')
+    parser.add_argument('--model_name', type=str, default='VGG16', 
+                        help='Name of the model to train')
+    return parser.parse_args()
 
 dataset_name = "celeba"
-device = "cpu"
+device = "cuda"
 root_path = "./target_model"
 log_path = os.path.join(root_path, "target_logs")
 model_path = os.path.join(root_path, "target_ckp")
@@ -14,12 +21,13 @@ os.makedirs(log_path, exist_ok=True)
 def main(args, model_name, trainloader, testloader):
     n_classes = args["dataset"]["n_classes"]
     mode = args["dataset"]["mode"]
+
     if model_name == "VGG16":
         if mode == "reg": 
             net = classify.VGG16(n_classes)
         elif mode == "vib":
             net = classify.VGG16_vib(n_classes)
-	
+    
     elif model_name == "FaceNet":
         net = classify.FaceNet(n_classes)
         BACKBONE_RESUME_ROOT = os.path.join(root_path, "backbone_ir50_ms1m_epoch120.pth")
@@ -86,9 +94,13 @@ def main(args, model_name, trainloader, testloader):
     torch.save({'state_dict':best_model.state_dict()}, os.path.join(model_path, "{}_{:.2f}_allclass.tar").format(model_name, best_acc))
 
 if __name__ == '__main__':
+    
+    args_cmd = parse_arguments()
+    model_name = args_cmd.model_name
+
     file = "./config/classify.json"
     args = utils.load_json(json_file=file)
-    model_name = args['dataset']['model_name']
+    args['dataset']['model_name'] = model_name
 
     log_file = "{}.txt".format(model_name)
     utils.Tee(os.path.join(log_path, log_file), 'w')

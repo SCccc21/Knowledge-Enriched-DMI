@@ -73,14 +73,16 @@ if __name__ == "__main__":
 
     if args.model.startswith("VGG16"):
         T = VGG16(1000)
-        path_T = './target_model/target_ckp/VGG16_88.26.tar'
+        path_T = './target_model/target_ckp/VGG16_86.30_allclass.tar'
     elif args.model.startswith('IR152'):
         T = IR152(1000)
         path_T = './target_model/target_ckp/IR152_91.16.tar'
     elif args.model == "FaceNet64":
         T = FaceNet64(1000)
         path_T = './target_model/target_ckp/FaceNet64_88.50.tar'
-
+    else:
+        raise ValueError(f"Invalid model_name: {args.model}. The model name must be one of ['VGG16', 'IR152', 'FaceNet64'].") 
+        exit()
     
     T = torch.nn.DataParallel(T).cuda()
     ckp_T = torch.load(path_T)

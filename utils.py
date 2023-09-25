@@ -96,7 +96,7 @@ def init_dataloader(args, file_path, batch_size=64, mode="gan", iterator=False):
                                 batch_size=batch_size,
                                 shuffle=shuffle_flag,
                                 drop_last=True,
-                                num_workers=2,
+                                num_workers=0,
                                 pin_memory=True)
         interval = time.time() - tf
         print('Initializing data loader took %ds' % interval)

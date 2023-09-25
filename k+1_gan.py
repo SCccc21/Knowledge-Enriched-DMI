@@ -16,7 +16,15 @@ from generator import Generator
 from classify import *
 from tensorboardX import SummaryWriter
 from datetime import datetime
+import argparse
 TIMESTAMP = "{0:%Y-%m-%dT%H-%M-%S/}".format(datetime.now())
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='Improved GAN Training Script')
+    parser.add_argument('--model_name_T', type=str, default='VGG16',
+                        help='Name of the model T. Default is FaceNet64.')
+    return parser.parse_args()
+
 
 def freeze(net):
     for p in net.parameters():
@@ -45,14 +53,14 @@ def log_sum_exp(x, axis = 1):
     return m + torch.log(torch.sum(torch.exp(x - m.unsqueeze(1)), dim = axis))
 
 
-save_img_dir = "./improvedGAN/imgs_improved_celeba_gan"
-save_model_dir= "./improvedGAN/"
+save_img_dir = "./improvedGAN/FaceNet/imgs_improved_celeba_gan"
+save_model_dir= "./improvedGAN/FaceNet/"
 os.makedirs(save_model_dir, exist_ok=True)
 os.makedirs(save_img_dir, exist_ok=True)
 
 dataset_name = "celeba"
 
-log_path = "./improvedGAN/attack_logs"
+log_path = "./improvedGAN/FaceNet/attack_logs"
 os.makedirs(log_path, exist_ok=True)
 log_file = "improvedGAN_celeba.txt"
 utils.Tee(os.path.join(log_path, log_file), 'w')
@@ -60,9 +68,9 @@ utils.Tee(os.path.join(log_path, log_file), 'w')
 
 
 if __name__ == "__main__":
-    os.environ["CUDA_VISIBLE_DEVICES"] = '4, 5, 6, 7'
+    # os.environ["CUDA_VISIBLE_DEVICES"] = '4, 5, 6, 7'
     global args, writer
-    
+        
     file = "./config/" + dataset_name + ".json"
     args = load_json(json_file=file)
     writer = SummaryWriter(log_path)
@@ -75,18 +83,25 @@ if __name__ == "__main__":
     epochs = args[model_name]['epochs']
     n_critic = args[model_name]['n_critic']
 
-    model_name_T = "VGG16"
-
+    args_cmd = parse_args() 
+    model_name_T = args_cmd.model_name_T 
+    
+    
     if model_name_T.startswith("VGG16"):
         T = VGG16(1000)
-        path_T = './target_model/target_ckp/VGG16_88.26.tar'
+        path_T = './target_model/target_ckp/VGG16_86.30_allclass.tar'
     elif model_name_T.startswith('IR152'):
         T = IR152(1000)
         path_T = './target_model/target_ckp/IR152_91.16.tar'
     elif model_name_T == "FaceNet64":
         T = FaceNet64(1000)
         path_T = './target_model/target_ckp/FaceNet64_88.50.tar'
+    else:
+        raise ValueError(f"Invalid model_name_T: {model_name_T}. The model name must be one of ['VGG16', 'IR152', 'FaceNet64'].") 
+        exit()
 
+
+        
     T = torch.nn.DataParallel(T).cuda()
     ckp_T = torch.load(path_T)
     T.load_state_dict(ckp_T['state_dict'], strict=False)
@@ -111,6 +126,9 @@ if __name__ == "__main__":
     step = 0
 
     for epoch in range(epochs):
+
+        print(f"epoch: {epoch+1}/{epochs}")
+        
         start = time.time()
         _, unlabel_loader1 = init_dataloader(args, file_path, batch_size, mode="gan", iterator=True)
         _, unlabel_loader2 = init_dataloader(args, file_path, batch_size, mode="gan", iterator=True)
@@ -180,7 +198,7 @@ if __name__ == "__main__":
         end = time.time()
         interval = end - start
         
-        print("Epoch:%d \tTime:%.2f\tG_loss:%.2f\t train_acc:%.2f" % (epoch, interval, g_loss, acc))
+        print("Epoch:%d \tTime:%.2f\tG_loss:%.2f\t train_acc:%.2f" % (epoch + 1, interval, g_loss, acc))
 
         torch.save({'state_dict':G.state_dict()}, os.path.join(save_model_dir, "improved_celeba_G.tar"))
         torch.save({'state_dict':DG.state_dict()}, os.path.join(save_model_dir, "improved_celeba_D.tar"))

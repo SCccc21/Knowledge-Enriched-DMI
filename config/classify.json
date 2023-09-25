@@ -3,11 +3,11 @@
       "name":"celeba",
       "train_file_path":"./data/trainset.txt",
       "test_file_path":"./data/testset.txt",
-      "img_path": "./data/img_align_celeba_png",
+      "img_path": "./data/celeba/img_align_celeba",
       "model_name":"VGG16",
       "mode":"reg",
       "n_classes":1000,
-      "gpus":"0,1,2,3,4,5,6,7"
+      "gpus":"0"
     },
     "VGG16":{
       "epochs":50,
